@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --bg:        #0d0d0d;
+      --surface:   #141414;
+      --border:    #252525;
+      --accent:    #c8f060;      /* lime green — change freely */
+      --accent2:   #4af0c0;      /* teal highlight */
+      --text:      #e8e4dc;
+      --muted:     #6b6860;
+      --serif:     'DM Serif Display', Georgia, serif;
+      --mono:      'DM Mono', 'Courier New', monospace;
+      --sans:      'DM Sans', system-ui, sans-serif;
+      --radius:    6px;
+      --max:       860px;
+    }
+
+    /* ─── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── NOISE OVERLAY ──────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── NAV ────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 2.5rem 4rem;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.1s forwards;
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.65;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s forwards;
+    }
+    .hero-ctas {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s forwards;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: var(--radius);
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0d0d0d;
+      font-weight: 500;
+    }
+    .btn-primary:hover { background: #d6ff70; transform: translateY(-1px); }
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTION SHELL ──────────────────────────────────── */
+    section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 6rem 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.15;
+      margin-bottom: 3rem;
+    }
+
+    /* ─── ABOUT ──────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 0.97rem; }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+    .about-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .about-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+    }
+    .about-card .card-icon { font-size: 1.3rem; margin-bottom: 0.4rem; }
+    .about-card .card-title { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+    .about-card .card-desc  { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* ─── EXPERIENCE ─────────────────────────────────────── */
+    .exp-list { display: flex; flex-direction: column; gap: 2px; }
+    .exp-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.8rem;
+      transition: border-color 0.2s;
+    }
+    .exp-item:hover { border-color: #333; }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.3rem;
+      flex-wrap: wrap;
+    }
+    .exp-role {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .exp-company {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .exp-bullets { padding-left: 1.1rem; list-style: disc; }
+    .exp-bullets li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+    }
+    .exp-bullets li::marker { color: var(--border); }
+
+    /* ─── SKILLS ─────────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.75rem;
+    }
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.3rem;
+    }
+    .skill-group-title {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-tag {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    /* ─── PROJECTS ───────────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: #333; transform: translateY(-2px); }
+    .project-card a { display: contents; }
+    .project-name {
+      font-size: 0.97rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .project-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent2);
+      background: rgba(74,240,192,0.07);
+      border: 1px solid rgba(74,240,192,0.15);
+      border-radius: 3px;
+      padding: 0.15rem 0.5rem;
+    }
+
+    /* ─── EDUCATION ──────────────────────────────────────── */
+    .edu-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .edu-degree { font-size: 1rem; font-weight: 500; color: var(--text); margin-bottom: 0.3rem; }
+    .edu-school { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); margin-bottom: 0.6rem; }
+    .edu-detail { font-size: 0.85rem; color: var(--muted); }
+    .edu-badges { display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-end; }
+    .edu-badge {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.35rem 0.9rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* ─── CONTACT ────────────────────────────────────────── */
+    #contact { border-bottom: 1px solid var(--border); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .contact-intro { font-size: 0.95rem; color: var(--muted); line-height: 1.75; }
+    .contact-cta {
+      display: inline-flex;
+      margin-top: 1.5rem;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 0.6rem; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.9rem 1.1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.87rem;
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--text); }
+    .contact-link .link-icon { font-size: 1rem; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 680px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+      #hero, section { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .about-grid, .contact-grid, .projects-grid { grid-template-columns: 1fr; }
+      .about-cards { grid-template-columns: 1fr 1fr; }
+      .edu-item { flex-direction: column; }
+      .edu-badges { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ───────────────────────────────────────────── -->
+  <nav>
+    <span class="nav-logo">YN</span><!-- ✏️ Change to your initials -->
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ──────────────────────────────────────────── -->
+  <div id="hero">
+    <p class="hero-tag">✏️ Your Title · Your Field · Your Specialty</p>
+    <h1 class="hero-name">Your <em>Name</em><br>Goes Here</h1>
+    <p class="hero-sub">
+      ✏️ One or two sentences about who you are and what you do. Keep it sharp — this is the first thing visitors read.
+    </p>
+    <div class="hero-ctas">
+      <a href="#experience" class="btn btn-primary">View My Work</a>
+      <a href="https://github.com/yourusername" class="btn btn-ghost" target="_blank">GitHub →</a><!-- ✏️ -->
+    </div>
+  </div>
+
+  <!-- ── ABOUT ─────────────────────────────────────────── -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <h2 class="section-title">✏️ A short, punchy headline about you</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>✏️ Write a paragraph about your background, what drives you, and where you've been. Keep it personal but professional.</p>
+        <p>✏️ Add a second paragraph focusing on what you're currently working on or where you're headed. Mention any key tools, methods, or domains you work in.</p>
+      </div>
+      <div class="about-cards">
+        <!-- ✏️ Replace each card with your own focus areas -->
+        <div class="about-card">
+          <div class="card-icon">⚙️</div>
+          <div class="card-title">Skill Area 1</div>
+          <div class="card-desc">Short description of what you do here</div>
+        </div>
+        <div class="about-card">
+          <div class="card-icon">💻</div>
+          <div class="card-title">Skill Area 2</div>
+          <div class="card-desc">Short description of what you do here</div>
+        </div>
+        <div class="about-card">
+          <div class="card-icon">🔬</div>
+          <div class="card-title">Skill Area 3</div>
+          <div class="card-desc">Short description of what you do here</div>
+        </div>
+        <div class="about-card">
+          <div class="card-icon">🚀</div>
+          <div class="card-title">Skill Area 4</div>
+          <div class="card-desc">Short description of what you do here</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ─────────────────────────────────────── -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">Where I've worked</h2>
+    <div class="exp-list">
+
+      <!-- ✏️ JOB 1 — Most recent first -->
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-role">Job Title</span>
+          <span class="exp-date">Jan 2024 – Present</span>
+        </div>
+        <div class="exp-company">Company Name — City, State</div>
+        <ul class="exp-bullets">
+          <li>✏️ Describe your biggest impact in one sentence. Use numbers where possible.</li>
+          <li>✏️ What did you build, lead, or improve? Be specific.</li>
+          <li>✏️ Any cross-functional work, tools used, or results achieved.</li>
+        </ul>
+      </div>
+
+      <!-- ✏️ JOB 2 -->
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-role">Job Title</span>
+          <span class="exp-date">Jun 2022 – Dec 2023</span>
+        </div>
+        <div class="exp-company">Company Name — City, State</div>
+        <ul class="exp-bullets">
+          <li>✏️ Describe your biggest impact in one sentence.</li>
+          <li>✏️ What did you build, lead, or improve?</li>
+        </ul>
+      </div>
+
+      <!-- ✏️ JOB 3 -->
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-role">Intern / Entry Role</span>
+          <span class="exp-date">May 2021 – Aug 2021</span>
+        </div>
+        <div class="exp-company">Company Name — City, State</div>
+        <ul class="exp-bullets">
+          <li>✏️ What did you do / learn?</li>
+          <li>✏️ Any deliverable or outcome worth mentioning.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SKILLS ─────────────────────────────────────────── -->
+  <section id="skills">
+    <p class="section-label">Skills</p>
+    <h2 class="section-title">Technical toolkit</h2>
+    <div class="skills-grid">
+
+      <!-- ✏️ Add / rename groups and tags as needed -->
+      <div class="skill-group">
+        <div class="skill-group-title">💻 Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">✏️ Add yours</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">🛠️ Frameworks & Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">✏️ Add yours</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">☁️ Cloud & Infra</div>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">✏️ Add yours</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">🧠 Other</div>
+        <div class="skill-tags">
+          <span class="skill-tag">✏️ Skill</span>
+          <span class="skill-tag">✏️ Skill</span>
+          <span class="skill-tag">✏️ Skill</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ───────────────────────────────────────── -->
+  <section id="projects">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">Selected work</h2>
+    <div class="projects-grid">
+
+      <!-- ✏️ PROJECT 1 — Link to GitHub or live site -->
+      <div class="project-card">
+        <a href="https://github.com/yourusername/project-one" target="_blank">
+          <div class="project-name">✏️ Project Name</div>
+          <div class="project-desc">✏️ One or two sentences describing what the project does and why it's interesting or useful.</div>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">✏️ Tag</span>
+            <span class="project-tag">2024</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- ✏️ PROJECT 2 -->
+      <div class="project-card">
+        <a href="https://github.com/yourusername/project-two" target="_blank">
+          <div class="project-name">✏️ Project Name</div>
+          <div class="project-desc">✏️ One or two sentences describing what the project does and why it's interesting or useful.</div>
+          <div class="project-tags">
+            <span class="project-tag">JavaScript</span>
+            <span class="project-tag">✏️ Tag</span>
+            <span class="project-tag">2023</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- ✏️ PROJECT 3 -->
+      <div class="project-card">
+        <div class="project-name">✏️ Project Name (no link)</div>
+        <div class="project-desc">✏️ Describe this project. If there's no public link, just leave the anchor tag off.</div>
+        <div class="project-tags">
+          <span class="project-tag">✏️ Tag</span>
+          <span class="project-tag">2023</span>
+        </div>
+      </div>
+
+      <!-- ✏️ PROJECT 4 -->
+      <div class="project-card">
+        <div class="project-name">✏️ Project Name</div>
+        <div class="project-desc">✏️ Describe this project briefly.</div>
+        <div class="project-tags">
+          <span class="project-tag">✏️ Tag</span>
+          <span class="project-tag">2022</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── EDUCATION ──────────────────────────────────────── -->
+  <section id="education">
+    <p class="section-label">Education</p>
+    <h2 class="section-title">Academic background</h2>
+
+    <!-- ✏️ Add more edu-items if you have multiple degrees -->
+    <div class="edu-item">
+      <div>
+        <div class="edu-degree">✏️ B.S. / M.S. in Your Major</div>
+        <div class="edu-school">University Name — City, State</div>
+        <div class="edu-detail">✏️ Expected / Graduated: Month Year · GPA: X.XX (optional)</div>
+        <div class="edu-detail" style="margin-top:0.3rem;">✏️ Minor in Something · Any honors or relevant clubs</div>
+      </div>
+      <div class="edu-badges">
+        <div class="edu-badge">✏️ GPA: X.X</div>
+        <div class="edu-badge">✏️ Honors</div>
+        <div class="edu-badge">✏️ Minor</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ────────────────────────────────────────── -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Let's connect</h2>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-intro">
+          ✏️ Write a friendly 2–3 sentence blurb about what kind of opportunities, collaborations, or conversations you're open to. This makes people feel welcome to reach out.
+        </p>
+        <a href="mailto:you@email.com" class="btn btn-primary contact-cta">Send an Email</a><!-- ✏️ -->
+      </div>
+      <div class="contact-links">
+        <!-- ✏️ Update all hrefs and display text below -->
+        <a href="mailto:you@email.com" class="contact-link">
+          <span class="link-icon">✉️</span> you@email.com
+        </a>
+        <a href="https://github.com/yourusername" class="contact-link" target="_blank">
+          <span class="link-icon">🐙</span> github.com/yourusername
+        </a>
+        <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
+          <span class="link-icon">💼</span> linkedin.com/in/yourprofile
+        </a>
+        <div class="contact-link">
+          <span class="link-icon">📍</span> Your City, State
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <footer>
+    © 2026 Your Name · Built for GitHub Pages<!-- ✏️ -->
+  </footer>
+
+</body>
+</html>
