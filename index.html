@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name — Portfolio</title>
+  <title>Abhi Gandikota — Aerospace Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
@@ -13,8 +13,8 @@
       --bg:        #0d0d0d;
       --surface:   #141414;
       --border:    #252525;
-      --accent:    #f06060;      /* lime green — change freely */
-      --accent2:   #87a0a4;      /* teal highlight */
+      --accent:    #f06060;
+      --accent2:   #87a0a4;
       --text:      #e8e4dc;
       --muted:     #6b6860;
       --serif:     'DM Serif Display', Georgia, serif;
@@ -34,6 +34,7 @@
       font-size: 16px;
       line-height: 1.7;
       overflow-x: hidden;
+      min-height: 100vh;
     }
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
@@ -150,7 +151,7 @@
       color: #0d0d0d;
       font-weight: 500;
     }
-    .btn-primary:hover { background: #d6ff70; transform: translateY(-1px); }
+    .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
     .btn-ghost {
       border: 1px solid var(--border);
       color: var(--muted);
@@ -226,11 +227,7 @@
       margin-bottom: 0.3rem;
       flex-wrap: wrap;
     }
-    .exp-role {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--text);
-    }
+    .exp-role { font-size: 1rem; font-weight: 500; color: var(--text); }
     .exp-date {
       font-family: var(--mono);
       font-size: 0.75rem;
@@ -298,25 +295,15 @@
     }
     .project-card:hover { border-color: #333; transform: translateY(-2px); }
     .project-card a { display: contents; }
-    .project-name {
-      font-size: 0.97rem;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-    .project-desc {
-      font-size: 0.85rem;
-      color: var(--muted);
-      flex: 1;
-      margin-bottom: 1rem;
-    }
+    .project-name { font-size: 0.97rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; }
+    .project-desc { font-size: 0.85rem; color: var(--muted); flex: 1; margin-bottom: 1rem; }
     .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .project-tag {
       font-family: var(--mono);
       font-size: 0.7rem;
       color: var(--accent2);
-      background: rgba(74,240,192,0.07);
-      border: 1px solid rgba(74,240,192,0.15);
+      background: rgba(135,160,164,0.07);
+      border: 1px solid rgba(135,160,164,0.2);
       border-radius: 3px;
       padding: 0.15rem 0.5rem;
     }
@@ -357,10 +344,7 @@
       align-items: start;
     }
     .contact-intro { font-size: 0.95rem; color: var(--muted); line-height: 1.75; }
-    .contact-cta {
-      display: inline-flex;
-      margin-top: 1.5rem;
-    }
+    .contact-cta { display: inline-flex; margin-top: 1.5rem; }
     .contact-links { display: flex; flex-direction: column; gap: 0.6rem; }
     .contact-link {
       display: flex;
@@ -402,7 +386,7 @@
 
   <!-- ── NAV ───────────────────────────────────────────── -->
   <nav>
-    <span class="nav-logo">AG</span> 
+    <span class="nav-logo">AG</span>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -415,10 +399,10 @@
 
   <!-- ── HERO ──────────────────────────────────────────── -->
   <div id="hero">
-    <p class="hero-tag"> Aerospace Engineer · CFD/FEA · Simulation</p>
-    <h1 class="hero-name">Abhi <em>Gandikota</em><br></h1>
+    <p class="hero-tag">Aerospace Engineer · CFD / FEA · Simulation</p>
+    <h1 class="hero-name">Abhi <em>Gandikota</em></h1>
     <p class="hero-sub">
-      M.S. Aerospace Engineer at North Carolina State University.
+      M.S. Aerospace Engineer at North Carolina State University — building high-fidelity CFD simulations, structural analyses, and data-driven tools at the intersection of engineering and computation.
     </p>
     <div class="hero-ctas">
       <a href="#experience" class="btn btn-primary">View My Work</a>
@@ -432,30 +416,29 @@
     <h2 class="section-title">Graduate Aerospace Engineer</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>I am a graduate research assistant at NC State University where I build 3D unsteady CFD simulations on a morphing wing rotor. These simulations capture complex tip vortex shedding and wake contractions across various RPM sweeps and angles of attack to inform future mprhing wing design .</p>
-        <p>I'm looking to apply my knowledge and expertise in various different simulation fields upon the completion of my degree.</p>
+        <p>I'm a graduate research assistant at NC State University where I build <strong>3D unsteady CFD simulations</strong> of a morphing-wing rotor in ANSYS Fluent. These simulations resolve tip vortex shedding and wake contraction across RPM sweeps and angles of attack to inform future morphing wing design.</p>
+        <p>I've applied this simulation expertise across wind tunnel research at <strong>NASA Langley</strong>, liquid rocket structural analysis, and video analytics for NC State Football. I'm looking to bring this combination of aerospace engineering depth and computational tooling into industry upon completing my degree.</p>
       </div>
       <div class="about-cards">
-        <!-- ✏️ Replace each card with your own focus areas -->
         <div class="about-card">
-          <div class="card-icon">⚙️</div>
-          <div class="card-title">Skill Area 1</div>
-          <div class="card-desc">Short description of what you do here</div>
+          <div class="card-icon">🌀</div>
+          <div class="card-title">CFD Simulation</div>
+          <div class="card-desc">ANSYS Fluent · sliding mesh · transient vortex analysis</div>
+        </div>
+        <div class="about-card">
+          <div class="card-icon">🔩</div>
+          <div class="card-title">Structural FEA</div>
+          <div class="card-desc">ANSYS Mechanical · thermal-structural coupling · mesh convergence</div>
         </div>
         <div class="about-card">
           <div class="card-icon">💻</div>
-          <div class="card-title">Skill Area 2</div>
-          <div class="card-desc">Short description of what you do here</div>
+          <div class="card-title">Engineering Software</div>
+          <div class="card-desc">MATLAB · Python · SolidWorks · Siemens NX · Creo</div>
         </div>
         <div class="about-card">
-          <div class="card-icon">🔬</div>
-          <div class="card-title">Skill Area 3</div>
-          <div class="card-desc">Short description of what you do here</div>
-        </div>
-        <div class="about-card">
-          <div class="card-icon">🚀</div>
-          <div class="card-title">Skill Area 4</div>
-          <div class="card-desc">Short description of what you do here</div>
+          <div class="card-icon">📊</div>
+          <div class="card-title">Data & Analytics</div>
+          <div class="card-desc">Python · nflverse · Plotly · experimental data processing</div>
         </div>
       </div>
     </div>
@@ -467,21 +450,19 @@
     <h2 class="section-title">Where I've worked</h2>
     <div class="exp-list">
 
-      <!-- Graduate Research Assistant -->
       <div class="exp-item">
         <div class="exp-header">
           <span class="exp-role">Graduate Research Assistant</span>
-          <span class="exp-date">Aug 2025 – December 2025</span>
+          <span class="exp-date">Aug 2025 – Dec 2025</span>
         </div>
-        <div class="exp-company">NC State RARE Lab — Raleigh, North Carolina</div>
+        <div class="exp-company">NC State RARE Lab — Raleigh, NC</div>
         <ul class="exp-bullets">
-          <li>Conducted 3D unsteady CFD simulations of a 3-ft rotor in ANSYS Fluent using a transient sliding mesh framework, resolving tip vortex shedding and wake contraction across RPM sweeps of 1,000 – 3,500 at angles of attack from -2 to 10 degrees to inform future morphing wing design.</li>
+          <li>Conducted 3D unsteady CFD simulations of a 3-ft rotor in ANSYS Fluent using a transient sliding mesh framework, resolving tip vortex shedding and wake contraction across RPM sweeps of 1,000–3,500 at angles of attack from −2° to 10° to inform morphing wing design.</li>
           <li>Optimized mesh resolution and timestep selection to maintain numerical stability at constant blade tip speeds, applying boundary layer inflation and turbulence modeling best practices to preserve vortex structure through the downstream wake.</li>
-          <li>Quantified vorticity, induced velocity, pressure distributions, and tip vortex coherence across all mesh refinements, demonstrating that coarse meshes artificially overpredict thrust and underpredict torque due to insufficient resolution of blade-tip flow curvature.</li>
+          <li>Quantified vorticity, induced velocity, pressure distributions, and tip vortex coherence across all mesh refinements — demonstrating that coarse meshes artificially overpredict thrust and underpredict torque due to insufficient resolution of blade-tip flow curvature.</li>
         </ul>
       </div>
 
-      <!-- Langley -->
       <div class="exp-item">
         <div class="exp-header">
           <span class="exp-role">Aerospace Engineering Intern</span>
@@ -489,37 +470,35 @@
         </div>
         <div class="exp-company">Jacobs — NASA Langley Research Center, Hampton, VA</div>
         <ul class="exp-bullets">
-          <li> Developed MATLAB scripts to automatically identify supersonic shock wave locations in the Unitary Plan Wind Tunnel, improving supersonic test accuracy and reducing model risk.</li>
-          <li> Designed and validated a high-pressure propulsion enclosure in SolidWorks, applying structural analysis and fabrication constraints to support expanded experimental testing capabilities.</li>
-          <li> Collaborated with Test Engineers to program and analyze large experimental aerodynamic datasets, resolving calibration and data quality issues to support model validation.</li>
-          <li>Developed a MATLAB GUI that automated Euler angle rotation and coordinate transformation calculations, reducing model setup and calibration time.</li>
-          <li>Documented multi-system flow infrastructure across wind tunnel facilities, supporting operational accuracy for high-pressure experimental test environments used in aerodynamic research and model validation</li>
+          <li>Developed MATLAB scripts to automatically identify supersonic shock wave locations in the Unitary Plan Wind Tunnel, improving supersonic test accuracy and reducing model risk.</li>
+          <li>Designed and validated a high-pressure propulsion enclosure in SolidWorks, applying structural analysis and fabrication constraints to support expanded experimental testing capabilities.</li>
+          <li>Collaborated with Test Engineers to program and analyze large experimental aerodynamic datasets, resolving calibration and data quality issues to support model validation.</li>
+          <li>Built a MATLAB GUI that automated Euler angle rotation and coordinate transformation calculations, reducing model setup and calibration time.</li>
+          <li>Documented multi-system flow infrastructure across wind tunnel facilities, supporting operational accuracy for high-pressure experimental test environments.</li>
         </ul>
       </div>
 
-      <!-- Engine Team Member -->
       <div class="exp-item">
         <div class="exp-header">
           <span class="exp-role">Engine Team Member</span>
           <span class="exp-date">Feb 2023 – Aug 2023</span>
         </div>
-        <div class="exp-company">NC State Liquid Rocketry Lab — Raleigh, North Carolina</div>
+        <div class="exp-company">NC State Liquid Rocketry Lab — Raleigh, NC</div>
         <ul class="exp-bullets">
           <li>Evaluated liquid rocket engine nozzle designs in Siemens NX and implemented validated design strategies into team prototypes.</li>
-          <li>Executed coupled structural and thermal FEA in ANSYS Mechanical on liquid rocket engine components operating at 1,000 psi chamber pressure and 1,000 K, performing mesh convergence studies and post-processing stress and deformation results to validate designs.</li>
+          <li>Executed coupled structural and thermal FEA in ANSYS Mechanical on engine components operating at 1,000 psi chamber pressure and 1,000 K, performing mesh convergence studies and post-processing stress and deformation results to validate designs.</li>
         </ul>
       </div>
 
-            <!-- Athletics-->
       <div class="exp-item">
         <div class="exp-header">
-          <span class="exp-role">Student Assistant</span>
+          <span class="exp-role">Student Assistant — Video Analytics</span>
           <span class="exp-date">Apr 2022 – Dec 2025</span>
         </div>
-        <div class="exp-company">NC State Athletics — Raleigh, North Carolina</div>
+        <div class="exp-company">NC State Athletics — Raleigh, NC</div>
         <ul class="exp-bullets">
-          <li> Created and delivered real time video analysis and analytics to coaching staff under strict time constraints, supporting rapid tactical decision making during practices and games with the NC State Football Team.</li>
-          <li> Collaborated within multidisciplinary teams in high pressure environments requiring accuracy and reliability.</li>
+          <li>Created and delivered real-time video analysis and analytics to the NC State Football coaching staff under strict time constraints, supporting rapid tactical decision-making during practices and games.</li>
+          <li>Collaborated within multidisciplinary teams in high-pressure environments requiring accuracy and reliability.</li>
         </ul>
       </div>
 
@@ -532,16 +511,14 @@
     <h2 class="section-title">Technical toolkit</h2>
     <div class="skills-grid">
 
-      <!-- ✏️ Add / rename groups and tags as needed -->
       <div class="skill-group">
-        <div class="skill-group-title">💻 Programming Languages</div>
+        <div class="skill-group-title">💻 Programming</div>
         <div class="skill-tags">
           <span class="skill-tag">Python</span>
-          <span class="skill-tag">MATLAB/Simulink</span>
-          <span class="skill-tag">C++ (Arduino IDE)</span>
+          <span class="skill-tag">MATLAB / Simulink</span>
+          <span class="skill-tag">C++ (Arduino)</span>
           <span class="skill-tag">Linux</span>
           <span class="skill-tag">LaTeX</span>
-          
         </div>
       </div>
 
@@ -550,27 +527,41 @@
         <div class="skill-tags">
           <span class="skill-tag">SolidWorks</span>
           <span class="skill-tag">Siemens NX</span>
-          <span class="skill-tag">Fusion360</span>
+          <span class="skill-tag">Fusion 360</span>
           <span class="skill-tag">Creo Parametric</span>
         </div>
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-title">Simulation & CFD</div>
+        <div class="skill-group-title">🌀 Simulation & CFD</div>
         <div class="skill-tags">
           <span class="skill-tag">ANSYS Fluent</span>
           <span class="skill-tag">ANSYS Mechanical</span>
+          <span class="skill-tag">Sliding Mesh</span>
           <span class="skill-tag">Thermal Analysis</span>
+          <span class="skill-tag">FEA</span>
         </div>
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-title">Aerospace Engineering</div>
+        <div class="skill-group-title">✈️ Aerospace</div>
         <div class="skill-tags">
+          <span class="skill-tag">Aerodynamics</span>
           <span class="skill-tag">Propulsion</span>
           <span class="skill-tag">Structures</span>
-          <span class="skill-tag">Aerodynamics</span>
-          <span class="skill-tag">Structures</span>
+          <span class="skill-tag">Wind Tunnel Testing</span>
+          <span class="skill-tag">Compressible Flow</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title">📊 Data & Analytics</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">Plotly</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Matplotlib</span>
+          <span class="skill-tag">HTML / CSS / JS</span>
         </div>
       </div>
 
@@ -582,51 +573,51 @@
     <p class="section-label">Projects</p>
     <h2 class="section-title">Selected work</h2>
     <div class="projects-grid">
-      
-      <!-- Compressible Flow -->
-      <div class="project-card">
-        <a href="https://abhig2201.github.io/compressible-flow-calculator/" target="_blank">
-          <div class="project-name"> Compressible Flow Calculator</div>
-          <div class="project-desc">Calculator for quick compressible flow calculations, including visuals and table generation.</div>
-          <div class="project-tags">
-            <span class="project-tag">HTML</span>
-            <span class="project-tag">Aerodynamics</span>
-            <span class="project-tag">2024</span>
-          </div>
-        </a>
-      </div>
 
-      <!-- NFL Analytics -->
       <div class="project-card">
         <a href="https://abhig2201.github.io/NFL-Analytics/" target="_blank">
-          <div class="project-name"> NFL Analytics</div>
-          <div class="project-desc"> Analytical Model that charts historical trends for all 32 NFL teams, used to self scout as well as evaluate future opponents.</div>
+          <div class="project-name">NFL Offensive Tendency Explorer</div>
+          <div class="project-desc">Interactive dashboard charting offensive play-calling trends for all 32 NFL teams across 2023–2025. Tracks pass/run rates, EPA per play, success rate, formation usage, and game script tendencies using nflverse play-by-play data.</div>
           <div class="project-tags">
-            <span class="project-tag">JHTML</span>
-            <span class="project-tag">EXCEL</span>
-            <span class="project-tag">R</span>
-            <span class="project-tag">2023</span>
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Plotly.js</span>
+            <span class="project-tag">nflverse</span>
+            <span class="project-tag">Data Analytics</span>
           </div>
         </a>
       </div>
 
-      <!-- ✏️ PROJECT 3 -->
       <div class="project-card">
-        <div class="project-name">✏️ Project Name (no link)</div>
-        <div class="project-desc">✏️ Describe this project. If there's no public link, just leave the anchor tag off.</div>
+        <a href="https://abhig2201.github.io/compressible-flow-calculator/" target="_blank">
+          <div class="project-name">Compressible Flow Calculator</div>
+          <div class="project-desc">Web-based calculator for isentropic, normal shock, oblique shock, Fanno, and Rayleigh flow relations — with interactive visuals and exportable data tables.</div>
+          <div class="project-tags">
+            <span class="project-tag">HTML / JS</span>
+            <span class="project-tag">Aerodynamics</span>
+            <span class="project-tag">Compressible Flow</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-name">FIST — Inflatable Soft Robotic Hand</div>
+        <div class="project-desc">Senior capstone project designing an inflatable robotic hand for assistive and prosthetic applications. Led structural and pneumatic analysis of the soft actuator system, integrating FEA validation with experimental prototype testing.</div>
         <div class="project-tags">
-          <span class="project-tag">✏️ Tag</span>
-          <span class="project-tag">2023</span>
+          <span class="project-tag">FEA</span>
+          <span class="project-tag">SolidWorks</span>
+          <span class="project-tag">Robotics</span>
+          <span class="project-tag">Capstone</span>
         </div>
       </div>
 
-      <!-- ✏️ PROJECT 4 -->
       <div class="project-card">
-        <div class="project-name">✏️ Project Name</div>
-        <div class="project-desc">✏️ Describe this project briefly.</div>
+        <div class="project-name">Morphing Wing Rotor CFD Study</div>
+        <div class="project-desc">3D unsteady CFD investigation of a morphing wing rotor at NC State's RARE Lab. Resolved tip vortex shedding and wake contraction across RPM and angle-of-attack sweeps using ANSYS Fluent with a sliding mesh framework.</div>
         <div class="project-tags">
-          <span class="project-tag">✏️ Tag</span>
-          <span class="project-tag">2022</span>
+          <span class="project-tag">ANSYS Fluent</span>
+          <span class="project-tag">CFD</span>
+          <span class="project-tag">Rotor Aerodynamics</span>
+          <span class="project-tag">Research</span>
         </div>
       </div>
 
@@ -637,18 +628,17 @@
   <section id="education">
     <p class="section-label">Education</p>
     <h2 class="section-title">Academic background</h2>
-
-    <!-- ✏️ Add more edu-items if you have multiple degrees -->
     <div class="edu-item">
       <div>
-        <div class="edu-degree"> M.S. + B.S. in Aerospace Engineering</div>
-        <div class="edu-school">North Carolina State University — Raleigh, North Carolina</div>
-        <div class="edu-detail"> Graduated: December 2025 · GPA: 3.7 (optional)</div>
-        <div class="edu-detail" style="margin-top:0.3rem;"> Manga Cum Laude</div>
+        <div class="edu-degree">M.S. + B.S. in Aerospace Engineering</div>
+        <div class="edu-school">North Carolina State University — Raleigh, NC</div>
+        <div class="edu-detail">Graduated: December 2025</div>
+        <div class="edu-detail" style="margin-top:0.3rem;">Magna Cum Laude</div>
       </div>
       <div class="edu-badges">
-        <div class="edu-badge"> GPA: 3.7</div>
-        <div class="edu-badge">✏️Magna Cum Laude</div>
+        <div class="edu-badge">GPA: 3.7</div>
+        <div class="edu-badge">Magna Cum Laude</div>
+        <div class="edu-badge">Dec 2025</div>
       </div>
     </div>
   </section>
@@ -660,20 +650,19 @@
     <div class="contact-grid">
       <div>
         <p class="contact-intro">
-          ✏️ Write a friendly 2–3 sentence blurb about what kind of opportunities, collaborations, or conversations you're open to. This makes people feel welcome to reach out.
+          I'm currently exploring full-time opportunities in aerospace engineering, simulation, and computational analysis. Whether you're working on a challenging CFD problem, need someone who bridges engineering and data, or just want to talk shop — I'm always happy to connect.
         </p>
-        <a href="mailto:agandikota22@gmail.com" class="btn btn-primary contact-cta">Send an Email</a><!-- ✏️ -->
+        <a href="mailto:agandikota22@gmail.com" class="btn btn-primary contact-cta">Send an Email</a>
       </div>
       <div class="contact-links">
-        <!-- ✏️ Update all hrefs and display text below -->
-        <a href="mailto:agandikota22@gmail.com.com" class="contact-link">
+        <a href="mailto:agandikota22@gmail.com" class="contact-link">
           <span class="link-icon">✉️</span> agandikota22@gmail.com
         </a>
         <a href="https://github.com/AbhiG2201" class="contact-link" target="_blank">
           <span class="link-icon">🐙</span> github.com/AbhiG2201
         </a>
         <a href="https://www.linkedin.com/in/abhyuday-gandikota-411405208/" class="contact-link" target="_blank">
-          <span class="link-icon">💼</span> https://www.linkedin.com/in/abhyuday-gandikota-411405208/
+          <span class="link-icon">💼</span> linkedin.com/in/abhyuday-gandikota
         </a>
         <div class="contact-link">
           <span class="link-icon">📍</span> New York, NY
@@ -682,9 +671,9 @@
     </div>
   </section>
 
-  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <!-- ── FOOTER ─────────────────────────────────────────── */
   <footer>
-    © 2026 Your Name · Built for GitHub Pages<!-- ✏️ -->
+    © 2026 Abhi Gandikota · Built for GitHub Pages
   </footer>
 
 </body>
